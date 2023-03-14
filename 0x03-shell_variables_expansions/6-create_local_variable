@@ -1,2 +1,2 @@
 #!/bin/bash
-BEST= School
+Name="BEST" ; Value="School"
