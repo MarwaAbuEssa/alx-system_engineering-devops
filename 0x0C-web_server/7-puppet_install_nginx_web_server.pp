@@ -1,16 +1,19 @@
 #config server
 
 package { 'nginx':
-provider => 'apt',
+  ensure => installed
 }
-exec {'hlbtn_page':
-command => '/usr/bin/sudo /bin/echo Holberton School > /var/www/html/index.nginx-debian.html',
+file_line { 'install':
+  ensure => 'present',
+  path   => '/etc/nginx/sites-enabled/default',
+  after  => 'listen 80 default_server;',
+  line   => 'rewrite ^/redirect_me https://www.github.com/marwaabuessa permanant;',
 }
-exec {'redirect_page':
 
-command => '/usr/bin/sudo /bin/sed -i "66i rewrite ^/redirect_me https://www.youtube.com/ permanent;" /etc/nginx/sites-available/default',
+file { '/var/www/html/index.html':
+  content => 'Hello Wolrd!',
 }
-exec {'start_server':
-
-command => '/usr/bin/sudo /usr/sbin/service nginx start',
+service { 'nginx':
+  ensure => running,
+  require => package['nginx']
 }
