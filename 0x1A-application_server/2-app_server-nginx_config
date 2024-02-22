@@ -91,5 +91,5 @@ server {
         #       deny all;
         #}
 	
->>>>>>> da044e6af458c417ab508352cb7609e5df2dbbfe
+
 }
