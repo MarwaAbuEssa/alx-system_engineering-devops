@@ -30,8 +30,9 @@ server {
         add_header X-Served-By 376513-web-01;
 
         # Serve /airbnb-onepage/ route on AirBnB_clone_v3
-        location = /airbnb-onepage/ {
+        location = /airbnb-onepage {
             proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+	    proxy_set_header Host localhost;
         }
 
         # Serve //6-number_odd_or_even/ route on AirBnB_clone_v3
